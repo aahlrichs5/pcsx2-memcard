@@ -36,6 +36,8 @@
 #include "SPU2/spu2.h"
 #include "gui/Dialogs/ModalPopups.h"
 
+#include "MemoryCardFile.h"
+
 static bool g_Pcsx2Recording = false; // true if recording video and sound
 
 
@@ -416,6 +418,14 @@ namespace Implementations
 #endif
 	}
 
+	void Sys_MemoryCardToggleOff() {
+		FileMcd_EmuClose();
+	}
+
+	void Sys_MemoryCardToggleOn() {
+		FileMcd_EmuOpen();
+	}
+
 	void Sys_RecordingToggle()
 	{
 		ScopedCoreThreadPause paused_core;
@@ -778,6 +788,22 @@ static const GlobalCommandDescriptor CommandDeclarations[] =
 		},
 
 		{
+			"Sys_MemoryCardToggleOff",
+			Implementations::Sys_MemoryCardToggleOff,
+			NULL,
+			NULL,
+			false
+		},
+
+		{
+			"Sys_MemoryCardToggleOn",
+			Implementations::Sys_MemoryCardToggleOn,
+			NULL,
+			NULL,
+			false
+		},
+
+		{
 			"Sys_RecordingToggle",
 			Implementations::Sys_RecordingToggle,
 			NULL,
@@ -995,7 +1021,10 @@ void Pcsx2App::InitDefaultGlobalAccelerators()
 	GlobalAccels->Map(AAC(WXK_F8), "Sys_TakeSnapshot");
 	// GlobalAccels->Map(AAC(WXK_F8).Shift(), "Sys_TakeSnapshot");
 	// GlobalAccels->Map(AAC(WXK_F8).Shift().Cmd(), "Sys_TakeSnapshot");
-	GlobalAccels->Map(AAC(WXK_F9), "Sys_RenderswitchToggle");
+	//GlobalAccels->Map(AAC(WXK_F9), "Sys_RenderswitchToggle");
+
+	GlobalAccels->Map(AAC(WXK_F9), "Sys_MemoryCardToggleOff");
+	GlobalAccels->Map(AAC(WXK_F10), "Sys_MemoryCardToggleOn");
 
 	// GlobalAccels->Map(AAC(WXK_F10),	"Sys_LoggingToggle");
 	// GlobalAccels->Map(AAC(WXK_F11),	"Sys_FreezeGS");

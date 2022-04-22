@@ -101,9 +101,11 @@ void GSPanel::InitDefaultAccelerators()
 
 	m_Accels->Map( AAC( WXK_ESCAPE ),			"Sys_SuspendResume" );
 	m_Accels->Map( AAC( WXK_F8 ),				"Sys_TakeSnapshot" ); // also shift and ctrl-shift will be added automatically
-	m_Accels->Map( AAC( WXK_F9 ),				"Sys_RenderswitchToggle");
+	//m_Accels->Map( AAC( WXK_F9 ),				"Sys_RenderswitchToggle");
+	m_Accels->Map(AAC(WXK_F9),					"Sys_MemoryCardToggleOff");
+	m_Accels->Map(AAC(WXK_F10),					"Sys_MemoryCardToggleOn");
 
-	m_Accels->Map( AAC( WXK_F10 ),				"Sys_LoggingToggle" );
+	// m_Accels->Map( AAC( WXK_F10 ),				"Sys_LoggingToggle" );
 	// m_Accels->Map( AAC( WXK_F11 ),				"Sys_FreezeGS" );
 	m_Accels->Map( AAC( WXK_F12 ),				"Sys_RecordingToggle" );
 

@@ -489,6 +489,8 @@ void MainEmuFrame::CreateCaptureMenu()
 	m_menuCapture.Append(MenuId_Capture_Video, _("Video"), &m_submenuVideoCapture);
 	// Implement custom hotkeys (F12) with translatable string intact + not blank in GUI.
 	wxMenuItem* sysVideoCaptureItem = m_submenuVideoCapture.Append(MenuId_Capture_Video_Record, _("Start Video Capture"));
+	AppendShortcutToMenuOption(*sysVideoCaptureItem, wxGetApp().GlobalAccels->findKeycodeWithCommandId("Sys_MemoryCardToggleOff").toTitleizedString());
+	AppendShortcutToMenuOption(*sysVideoCaptureItem, wxGetApp().GlobalAccels->findKeycodeWithCommandId("Sys_MemoryCardToggleOn").toTitleizedString());
 	AppendShortcutToMenuOption(*sysVideoCaptureItem, wxGetApp().GlobalAccels->findKeycodeWithCommandId("Sys_RecordingToggle").toTitleizedString());
 	sysVideoCaptureItem = m_submenuVideoCapture.Append(MenuId_Capture_Video_Stop, _("Stop Video Capture"));
 	sysVideoCaptureItem->Enable(false);
